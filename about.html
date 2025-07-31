@@ -3,12 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About - MeatCrafters</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>About Us | MeatCrafters Butchery</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .about-hero {
+      background-color: #fdf0ec;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .about-hero h1 {
+      color: #841515;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .about-content {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .about-content p {
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+    .about-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 3rem;
+      justify-content: center;
+    }
+    .feature-box {
+      flex: 1 1 250px;
+      background: #fffaf7;
+      border-left: 6px solid #841515;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+    .feature-box h3 {
+      color: #841515;
+      margin-bottom: 0.5rem;
+    }
+    .about-image {
+      text-align: center;
+      margin: 2rem auto;
+    }
+    .about-image img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <div class="logo"><img src="images/logo-placeholder.png" alt="Logo"/></div>
+    <div class="logo">
+      <img src="images/logo-placeholder.png" alt="MeatCrafters Logo" />
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -17,9 +71,42 @@
       <a href="order.html">Order</a>
     </nav>
   </header>
-  <main>
-    <h1>About Us</h1>
-    <p>MeatCrafters Butchery is committed to providing premium, ethically sourced meats. Our skilled team ensures every cut is perfect and every sausage is packed with flavor.</p>
-  </main>
+
+  <section class="about-hero">
+    <h1>Who We Are</h1>
+    <p>Delivering Quality Cuts with Pride & Passion</p>
+  </section>
+
+  <section class="about-content">
+    <div class="about-image">
+      <img src="images/meat-banner.jpg" alt="Inside our Butchery">
+    </div>
+    <p>Founded with a mission to bring fresh, affordable, and ethically sourced meat products to local communities, <strong>MeatCrafters Butchery</strong> has grown into a trusted name for quality meats in Zimbabwe.</p>
+
+    <p>We believe in more than just selling meat — we believe in building relationships with farmers, customers, and communities. Every cut is handled with care by skilled butchers who understand the value of quality and consistency.</p>
+
+    <p>Whether you're preparing a family dinner, stocking a restaurant kitchen, or planning a large event, we offer tailored solutions to suit your needs. Our focus on hygiene, professionalism, and timely delivery sets us apart from the rest.</p>
+
+    <div class="about-features">
+      <div class="feature-box">
+        <h3>🌱 Locally Sourced</h3>
+        <p>All our meats come from trusted Zimbabwean farms with sustainable practices.</p>
+      </div>
+      <div class="feature-box">
+        <h3>🔪 Expert Butchery</h3>
+        <p>Our team of trained butchers ensures perfect cuts, every time.</p>
+      </div>
+      <div class="feature-box">
+        <h3>🚚 Fast Delivery</h3>
+        <p>Reliable local delivery service ensures your meat stays fresh from shop to kitchen.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 MeatCrafters Butchery. All rights reserved.
+  </footer>
+
 </body>
 </html>
+

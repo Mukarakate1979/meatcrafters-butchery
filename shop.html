@@ -3,12 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shop - MeatCrafters</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Shop | MeatCrafters Butchery</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .section-title {
+      color: #841515;
+      margin: 2rem 0 1rem;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .product-card {
+      background: #fffaf7;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      width: 220px;
+      text-align: center;
+    }
+    .product-card h4 {
+      margin: 0.5rem 0;
+      color: #333;
+    }
+    .product-card p {
+      font-size: 0.95rem;
+      margin: 0.2rem 0;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <div class="logo"><img src="images/logo-placeholder.png" alt="Logo"/></div>
+    <div class="logo">
+      <img src="images/logo-placeholder.png" alt="MeatCrafters Logo" />
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -17,15 +50,55 @@
       <a href="order.html">Order</a>
     </nav>
   </header>
-  <main>
-    <h1>Our Products</h1>
-    <ul class="products">
-      <li>Beef - $12.00/kg</li>
-      <li>Pork - $9.00/kg</li>
-      <li>Chicken - $7.00/kg</li>
-      <li>Beef Sausages - $11.00/kg</li>
-      <li>Pork Sausages - $10.00/kg</li>
-    </ul>
-  </main>
+
+  <section class="section">
+    <h2 class="section-title">Beef Products</h2>
+    <div class="product-grid">
+      <div class="product-card"><h4>Brisket</h4><p>Juicy and flavorful cut, great for slow cooking.</p><p>$7.00/kg</p></div>
+      <div class="product-card"><h4>Chuck/Shoulder</h4><p>Ideal for stews and ground beef.</p><p>$6.50/kg</p></div>
+      <div class="product-card"><h4>Rib/Prime Rib</h4><p>Tender and rich, perfect for roasting.</p><p>$9.00/kg</p></div>
+      <div class="product-card"><h4>Sirloin</h4><p>Lean and flavorful grilling steak.</p><p>$10.00/kg</p></div>
+      <div class="product-card"><h4>T-Bone</h4><p>Classic steakhouse favorite.</p><p>$11.00/kg</p></div>
+      <div class="product-card"><h4>Fillet Steak</h4><p>Premium tenderloin, melt-in-your-mouth.</p><p>$13.00/kg</p></div>
+      <div class="product-card"><h4>Oxtail</h4><p>Rich in flavor, perfect for hearty stews.</p><p>$8.00/kg</p></div>
+      <div class="product-card"><h4>Rump Steak</h4><p>Full-flavored and budget-friendly steak.</p><p>$9.50/kg</p></div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <h2 class="section-title">Pork Products</h2>
+    <div class="product-grid">
+      <div class="product-card"><h4>Pork Belly</h4><p>Rich and fatty, excellent for roasts.</p><p>$6.00/kg</p></div>
+      <div class="product-card"><h4>Pork Chops</h4><p>Juicy bone-in or boneless cuts.</p><p>$6.50/kg</p></div>
+      <div class="product-card"><h4>Pork Ribs</h4><p>Perfect for barbecuing and smoking.</p><p>$7.00/kg</p></div>
+      <div class="product-card"><h4>Pork Shoulder</h4><p>Flavorful cut, great for pulled pork.</p><p>$5.50/kg</p></div>
+      <div class="product-card"><h4>Pork Loin</h4><p>Lean and tender, ideal for roasts.</p><p>$6.80/kg</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Chicken Products</h2>
+    <div class="product-grid">
+      <div class="product-card"><h4>Wings</h4><p>Perfect for grilling or deep frying.</p><p>$3.50/kg</p></div>
+      <div class="product-card"><h4>Drum Sticks</h4><p>Juicy and kid-friendly favorite.</p><p>$3.30/kg</p></div>
+      <div class="product-card"><h4>Breast</h4><p>Lean and versatile white meat.</p><p>$4.00/kg</p></div>
+      <div class="product-card"><h4>Thighs</h4><p>Flavorful and moist dark meat.</p><p>$3.70/kg</p></div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <h2 class="section-title">Sausage Products</h2>
+    <div class="product-grid">
+      <div class="product-card"><h4>Traditional Boerewors</h4><p>Classic spiral sausage, rich in spices.</p><p>$5.80/kg</p></div>
+      <div class="product-card"><h4>Pork Sausages</h4><p>Mild and juicy pork blend.</p><p>$5.50/kg</p></div>
+      <div class="product-card"><h4>Chili/Peri-Peri</h4><p>Spicy kick for the bold meat lover.</p><p>$6.00/kg</p></div>
+      <div class="product-card"><h4>Garlic Sausages</h4><p>Savory garlic-flavored delight.</p><p>$5.90/kg</p></div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 MeatCrafters Butchery. All rights reserved.
+  </footer>
+
 </body>
 </html>

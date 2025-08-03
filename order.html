@@ -1,14 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order - MeatCrafters</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Place an Order | MeatCrafters Butchery</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #841515;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #841515;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    form label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    form input, form textarea, form select {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    form button {
+      background-color: #841515;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      margin-top: 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .actions button {
+      flex: 1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      background-color: #f4f4f4;
+    }
+  </style>
 </head>
 <body>
+
 <header>
-  <div class="logo"><img src="images/logo-placeholder.png" alt="Logo"></div>
   <nav>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -17,26 +97,104 @@
     <a href="order.html">Order</a>
   </nav>
 </header>
-<main>
+
+<div class="container">
   <h1>Place Your Order</h1>
   <form id="orderForm">
-    <label>Name: <input type="text" name="name" required></label>
-    <label>Email: <input type="email" name="email" required></label>
-    <label>Phone: <input type="tel" name="phone" required></label>
-    <label>Product:
-      <select name="product" required>
-        <option value="Beef">Beef</option>
-        <option value="Pork">Pork</option>
-        <option value="Chicken">Chicken</option>
-        <option value="Beef Sausages">Beef Sausages</option>
-        <option value="Pork Sausages">Pork Sausages</option>
-      </select>
-    </label>
-    <label>Quantity (kg): <input type="number" name="quantity" step="0.1" required></label>
-    <label>Instructions: <textarea name="instructions"></textarea></label>
-    <button type="submit">Submit Order</button>
+    <label for="product">Select Product</label>
+    <select id="product" name="product" required>
+      <optgroup label="Beef">
+        <option>Brisket</option>
+        <option>Chuck/Shoulder</option>
+        <option>Rib/Prime Rib</option>
+        <option>Sirloin</option>
+        <option>T-Bone</option>
+        <option>Fillet steak</option>
+        <option>Oxtail</option>
+        <option>Rump steak</option>
+      </optgroup>
+      <optgroup label="Pork">
+        <option>Pork Belly</option>
+        <option>Pork Chops</option>
+        <option>Pork Ribs</option>
+        <option>Pork Shoulder</option>
+        <option>Pork Loin</option>
+      </optgroup>
+      <optgroup label="Chicken">
+        <option>Wings</option>
+        <option>Drumsticks</option>
+        <option>Breast</option>
+        <option>Thighs</option>
+      </optgroup>
+      <optgroup label="Sausages">
+        <option>Traditional Boerewors</option>
+        <option>Pork Sausages</option>
+        <option>Chili/Peri-Peri Sausages</option>
+        <option>Garlic Sausages</option>
+      </optgroup>
+    </select>
+
+    <label for="quantity">Quantity (kg)</label>
+    <input type="number" id="quantity" name="quantity" placeholder="e.g. 5" required />
+
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" placeholder="e.g. John Doe" required />
+
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone" name="phone" placeholder="e.g. +263 77 000 0000" required />
+
+    <label for="address">Delivery Address</label>
+    <textarea id="address" name="address" placeholder="Street, City, etc." rows="3" required></textarea>
+
+    <div class="actions">
+      <button type="submit">Send via Email</button>
+      <button type="button" onclick="sendWhatsApp()">Send via WhatsApp</button>
+    </div>
   </form>
-</main>
-<script src="scripts.js"></script>
+</div>
+
+<footer>
+  &copy; 2025 MeatCrafters Butchery. All rights reserved.
+</footer>
+
+<script>
+  // WhatsApp function
+  function sendWhatsApp() {
+    const product = document.getElementById("product").value;
+    const quantity = document.getElementById("quantity").value;
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const address = document.getElementById("address").value;
+
+    const message = `*Order from MeatCrafters Butchery*%0A` +
+      `Product: ${product}%0A` +
+      `Quantity: ${quantity} kg%0A` +
+      `Name: ${name}%0A` +
+      `Phone: ${phone}%0A` +
+      `Address: ${address}`;
+
+    const whatsappLink = `https://wa.me/263770000000?text=${message}`;
+    window.open(whatsappLink, '_blank');
+  }
+
+  // Email fallback
+  document.getElementById("orderForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const product = document.getElementById("product").value;
+    const quantity = document.getElementById("quantity").value;
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const address = document.getElementById("address").value;
+
+    const subject = `Order: ${product}`;
+    const body = `Product: ${product}\nQuantity: ${quantity} kg\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
+    const mailto = `mailto:info@meatcrafters.co.zw?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  });
+</script>
+
 </body>
 </html>
+
+ 
+    

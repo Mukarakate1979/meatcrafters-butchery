@@ -1,200 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Place an Order | MeatCrafters Butchery</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Advanced Order | MeatCrafters Butchery</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff8f5;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background-color: #841515;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    header nav a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    h1 {
-      color: #841515;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    form label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
-    }
-
-    form input, form textarea, form select {
-      width: 100%;
-      padding: 0.7rem;
-      margin-top: 0.3rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-
-    form button {
-      background-color: #841515;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      margin-top: 1.5rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .actions button {
-      flex: 1;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-      background-color: #f4f4f4;
-    }
+    body { font-family: 'Segoe UI', sans-serif; background-color: #fdf6f2; margin: 0; padding: 0; }
+    header { background-color: #841515; color: white; padding: 1rem; text-align: center; }
+    h1 { margin-top: 1rem; color: #841515; text-align: center; }
+    .container { max-width: 900px; margin: 2rem auto; background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .product-row { display: flex; gap: 1rem; margin-bottom: 1rem; }
+    .product-row select, .product-row input { flex: 1; padding: 0.5rem; }
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+    input, textarea, select { width: 100%; padding: 0.7rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+    button { background-color: #841515; color: white; padding: 0.7rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; }
+    #summary { background: #f9f9f9; padding: 1rem; margin-top: 1rem; border-radius: 6px; }
   </style>
 </head>
 <body>
+  <header>
+    <h1>MeatCrafters Butchery - Place Your Order</h1>
+  </header>
+  <div class="container">
+    <form id="orderForm">
+      <div id="productsContainer">
+        <div class="product-row">
+          <select name="product[]">
+            <optgroup label="Beef">
+              <option value="Brisket" data-price="6">Brisket - $6/kg</option>
+              <option value="Rib" data-price="7">Rib - $7/kg</option>
+            </optgroup>
+            <optgroup label="Pork">
+              <option value="Pork Chops" data-price="5">Pork Chops - $5/kg</option>
+              <option value="Pork Ribs" data-price="6">Pork Ribs - $6/kg</option>
+            </optgroup>
+            <optgroup label="Chicken">
+              <option value="Thighs" data-price="4">Chicken Thighs - $4/kg</option>
+              <option value="Breast" data-price="4.5">Chicken Breast - $4.5/kg</option>
+            </optgroup>
+            <optgroup label="Sausages">
+              <option value="Boerewors" data-price="7">Boerewors - $7/kg</option>
+            </optgroup>
+          </select>
+          <input type="number" name="quantity[]" placeholder="Quantity (kg)" min="1" required/>
+        </div>
+      </div>
+      <button type="button" onclick="addProduct()">+ Add Another Product</button>
 
-<header>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="shop.html">Shop</a>
-    <a href="contact.html">Contact</a>
-    <a href="order.html">Order</a>
-  </nav>
-</header>
+      <div class="form-group">
+        <label for="deliveryDate">Delivery Date</label>
+        <input type="date" id="deliveryDate" name="deliveryDate" required/>
+      </div>
 
-<div class="container">
-  <h1>Place Your Order</h1>
-  <form id="orderForm">
-    <label for="product">Select Product</label>
-    <select id="product" name="product" required>
-      <optgroup label="Beef">
-        <option>Brisket</option>
-        <option>Chuck/Shoulder</option>
-        <option>Rib/Prime Rib</option>
-        <option>Sirloin</option>
-        <option>T-Bone</option>
-        <option>Fillet steak</option>
-        <option>Oxtail</option>
-        <option>Rump steak</option>
-      </optgroup>
-      <optgroup label="Pork">
-        <option>Pork Belly</option>
-        <option>Pork Chops</option>
-        <option>Pork Ribs</option>
-        <option>Pork Shoulder</option>
-        <option>Pork Loin</option>
-      </optgroup>
-      <optgroup label="Chicken">
-        <option>Wings</option>
-        <option>Drumsticks</option>
-        <option>Breast</option>
-        <option>Thighs</option>
-      </optgroup>
-      <optgroup label="Sausages">
-        <option>Traditional Boerewors</option>
-        <option>Pork Sausages</option>
-        <option>Chili/Peri-Peri Sausages</option>
-        <option>Garlic Sausages</option>
-      </optgroup>
-    </select>
+      <div class="form-group">
+        <label for="deliveryTime">Delivery Time</label>
+        <input type="time" id="deliveryTime" name="deliveryTime" required/>
+      </div>
 
-    <label for="quantity">Quantity (kg)</label>
-    <input type="number" id="quantity" name="quantity" placeholder="e.g. 5" required />
+      <div class="form-group">
+        <label for="paymentMethod">Payment Method</label>
+        <select id="paymentMethod" name="paymentMethod" required>
+          <option value="Cash">Cash on Delivery</option>
+          <option value="EcoCash">EcoCash</option>
+          <option value="Bank Transfer">Bank Transfer</option>
+        </select>
+      </div>
 
-    <label for="name">Your Name</label>
-    <input type="text" id="name" name="name" placeholder="e.g. John Doe" required />
+      <div class="form-group">
+        <label for="mapLink">Google Maps Delivery Location Link</label>
+        <input type="url" id="mapLink" name="mapLink" placeholder="Paste your Google Maps location"/>
+      </div>
 
-    <label for="phone">Phone Number</label>
-    <input type="text" id="phone" name="phone" placeholder="e.g. +263 77 000 0000" required />
+      <div class="form-group">
+        <label for="customerName">Full Name</label>
+        <input type="text" id="customerName" name="customerName" required/>
+      </div>
 
-    <label for="address">Delivery Address</label>
-    <textarea id="address" name="address" placeholder="Street, City, etc." rows="3" required></textarea>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" name="phone" required/>
+      </div>
 
-    <div class="actions">
-      <button type="submit">Send via Email</button>
-      <button type="button" onclick="sendWhatsApp()">Send via WhatsApp</button>
-    </div>
-  </form>
-</div>
+      <div class="form-group">
+        <label for="address">Delivery Address</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+      </div>
 
-<footer>
-  &copy; 2025 MeatCrafters Butchery. All rights reserved.
-</footer>
+      <div id="summary"><strong>Order Summary:</strong><br><span id="summaryContent">No products added yet.</span></div>
 
-<script>
-  // WhatsApp function
-  function sendWhatsApp() {
-    const product = document.getElementById("product").value;
-    const quantity = document.getElementById("quantity").value;
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const address = document.getElementById("address").value;
+      <div class="form-group">
+        <button type="submit">Send Order via Email</button>
+        <button type="button" onclick="sendWhatsApp()">Send Order via WhatsApp</button>
+      </div>
+    </form>
+  </div>
 
-    const message = `*Order from MeatCrafters Butchery*%0A` +
-      `Product: ${product}%0A` +
-      `Quantity: ${quantity} kg%0A` +
-      `Name: ${name}%0A` +
-      `Phone: ${phone}%0A` +
-      `Address: ${address}`;
+  <script>
+    function addProduct() {
+      const container = document.getElementById('productsContainer');
+      const newRow = container.children[0].cloneNode(true);
+      newRow.querySelector('input').value = '';
+      container.appendChild(newRow);
+      updateSummary();
+    }
 
-    const whatsappLink = `https://wa.me/263714893191?text=${message}`;
-    window.open(whatsappLink, '_blank');
-  }
+    function updateSummary() {
+      const selects = document.querySelectorAll('select[name="product[]"]');
+      const quantities = document.querySelectorAll('input[name="quantity[]"]');
+      let summary = "";
+      let total = 0;
 
-  // Email fallback
-  document.getElementById("orderForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const product = document.getElementById("product").value;
-    const quantity = document.getElementById("quantity").value;
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const address = document.getElementById("address").value;
+      for (let i = 0; i < selects.length; i++) {
+        const option = selects[i].selectedOptions[0];
+        const product = option.value;
+        const price = parseFloat(option.getAttribute("data-price"));
+        const qty = parseFloat(quantities[i].value) || 0;
+        const subtotal = price * qty;
+        total += subtotal;
+        if (qty > 0) {
+          summary += `${product} - ${qty}kg @ $${price}/kg = $${subtotal.toFixed(2)}<br>`;
+        }
+      }
 
-    const subject = `Order: ${product}`;
-    const body = `Product: ${product}\nQuantity: ${quantity} kg\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
-    const mailto = `mailto:704trader@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-  });
-</script>
+      summary += `<br><strong>Total: $${total.toFixed(2)}</strong>`;
+      document.getElementById('summaryContent').innerHTML = summary || "No products added yet.";
+    }
 
+    document.querySelectorAll('input[name="quantity[]"]').forEach(input => {
+      input.addEventListener("input", updateSummary);
+    });
+    document.getElementById('productsContainer').addEventListener("input", updateSummary);
+
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = "info@meatcrafters.co.zw";
+      const subject = "New Order from MeatCrafters";
+      const body = document.getElementById('summaryContent').innerText + 
+                   "\nName: " + document.getElementById("customerName").value +
+                   "\nPhone: " + document.getElementById("phone").value +
+                   "\nAddress: " + document.getElementById("address").value +
+                   "\nDelivery: " + document.getElementById("deliveryDate").value +
+                   " at " + document.getElementById("deliveryTime").value +
+                   "\nPayment: " + document.getElementById("paymentMethod").value +
+                   "\nMap Link: " + document.getElementById("mapLink").value;
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+
+    function sendWhatsApp() {
+      const message = "*MeatCrafters Order*\n" +
+                      document.getElementById('summaryContent').innerText.replace(/<br>/g, "\n") +
+                      "\nName: " + document.getElementById("customerName").value +
+                      "\nPhone: " + document.getElementById("phone").value +
+                      "\nAddress: " + document.getElementById("address").value +
+                      "\nDelivery: " + document.getElementById("deliveryDate").value +
+                      " at " + document.getElementById("deliveryTime").value +
+                      "\nPayment: " + document.getElementById("paymentMethod").value +
+                      "\nMap: " + document.getElementById("mapLink").value;
+      window.open("https://wa.me/263770000000?text=" + encodeURIComponent(message), "_blank");
+    }
+  </script>
 </body>
 </html>
+
+  
+     
+
+
+ 
+
+   
+
 
  
     

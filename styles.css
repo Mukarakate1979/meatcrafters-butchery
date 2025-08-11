@@ -75,3 +75,21 @@ footer {
   text-align: center;
   padding: 1rem;
 }
+.order-button {
+  background-color: #ff7043; /* Vibrant orange */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+}
+
+.order-button:hover {
+  background-color: #f4511e; /* Darker orange */
+  transform: scale(1.05);
+  box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.3);
+}

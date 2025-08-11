@@ -78,10 +78,10 @@ footer {
 .order-button {
   background-color: #ff7043; /* Vibrant orange */
   color: white;
-  padding: 12px 20px;
-  border-radius: 10px;
+  padding: 10px 20px;
+  border-radius: 8px;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);

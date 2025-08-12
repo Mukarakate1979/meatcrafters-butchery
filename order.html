@@ -191,6 +191,81 @@
         updateSummary();
       }
     };
+    <script>
+/* Robust autofill from URL: product and qty */
+(function () {
+  function normalize(s) {
+    if (!s) return "";
+    return String(s).toLowerCase().replace(/\s+/g, " ").trim().replace(/[^a-z0-9 ]/g, "");
+  }
+
+  function findBestOption(selectEl, desiredRaw) {
+    if (!selectEl || !desiredRaw) return null;
+    const desired = normalize(decodeURIComponent(desiredRaw)).replace(/\+/g, ' ');
+    // first try exact normalized match
+    for (const opt of selectEl.options) {
+      if (normalize(opt.value) === desired) return opt;
+    }
+    // then try exact normalized match against textContent
+    for (const opt of selectEl.options) {
+      if (normalize(opt.textContent) === desired) return opt;
+    }
+    // then try "includes" matches (option contains desired or desired contains option)
+    for (const opt of selectEl.options) {
+      const optNorm = normalize(opt.value);
+      if (optNorm.includes(desired) || desired.includes(optNorm)) return opt;
+    }
+    // finally try token matches: any word matches
+    const desiredTokens = desired.split(" ").filter(Boolean);
+    for (const opt of selectEl.options) {
+      const optNorm = normalize(opt.value);
+      for (const t of desiredTokens) {
+        if (optNorm.includes(t)) return opt;
+      }
+    }
+    return null;
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const productParam = params.get('product');
+      const qtyParam = params.get('qty');
+
+      if (productParam) {
+        const productSelect = document.querySelector('select[name="product[]"]');
+        if (productSelect) {
+          const match = findBestOption(productSelect, productParam);
+          if (match) {
+            match.selected = true;
+            // dispatch change event (if you rely on it)
+            productSelect.dispatchEvent(new Event('change', { bubbles: true }));
+          } else {
+            console.info('Autofill: no matching option found for product=', productParam);
+          }
+        }
+      }
+
+      if (qtyParam) {
+        const qtyField = document.querySelector('input[name="quantity[]"]');
+        if (qtyField) {
+          // set to integer or float
+          const n = Number(qtyParam);
+          if (!isNaN(n) && n > 0) qtyField.value = n;
+        }
+      }
+
+      // Force summary update if function exists
+      if (typeof updateSummary === 'function') {
+        updateSummary();
+      }
+    } catch (err) {
+      console.error('Autofill script error:', err);
+    }
+  });
+})();
+</script>
+
 
 </script>
 </body>

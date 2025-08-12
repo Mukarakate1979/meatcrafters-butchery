@@ -159,6 +159,46 @@
                       "\nMap: " + document.getElementById("mapLink").value;
       window.open("https://wa.me/263770000000?text=" + encodeURIComponent(message), "_blank");
     }
-  </script>
+  
+    // 🌟 Auto-fill from URL parameters
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    window.onload = function() {
+      const productName = getQueryParam("product");
+      const qty = getQueryParam("qty");
+
+      if (productName) {
+        const productSelect = document.querySelector('select[name="product[]"]');
+        if (productSelect) {
+          for (let option of productSelect.options) {
+            if (option.value.toLowerCase() === productName.toLowerCase()) {
+              option.selected = true;
+              break;
+            }
+          }
+        }
+      }
+
+      if (qty) {
+        const qtyField = document.querySelector('input[name="quantity[]"]');
+        if (qtyField) qtyField.value = qty;
+      }
+
+      if (typeof updateSummary === "function") {
+        updateSummary();
+      }
+    };
+
+</script>
 </body>
 </html>
+              
+        
+
+     
+
+     
+                     
